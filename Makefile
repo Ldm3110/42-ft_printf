@@ -1,3 +1,7 @@
+# Pour compiler le projet
+# cc *.h libft/libft.h utils/handlers.c *.c
+
+
 CC = cc
 CCFLAGS = -Wall -Wextra -Werror
 FILES = 
