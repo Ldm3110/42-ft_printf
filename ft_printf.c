@@ -72,5 +72,3 @@ int	main(void)
 {
 	printf("\n%d\n", ft_printf("Il y a %d cartes et %d %s", 32, 4, "rois"));
 }
-
-// len_f += _ft_putstr_fd(va_arg(args, char *), 1);
