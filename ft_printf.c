@@ -19,14 +19,15 @@ void	init_format_handler(t_dict_func *table)
 	table[2] = (t_dict_func){'s', handle_str};
 	table[3] = (t_dict_func){'x', handle_hexa_lower};
 	table[4] = (t_dict_func){'X', handle_hexa_upper};
-	table[5] = (t_dict_func){'\0', NULL};
+	table[5] = (t_dict_func){'p', handle_address};
+	table[6] = (t_dict_func){'\0', NULL};
 }
 
 int	dispatch_function(char c, va_list *argument)
 {
 	int				len;
 	int				i;
-	t_dict_func		format_handler[6];
+	t_dict_func		format_handler[7];
 	t_handler_func	function;
 
 	init_format_handler(format_handler);
@@ -72,8 +73,12 @@ int	ft_printf(const char *format, ...)
 #include <stdio.h>
 int	main(void)
 {
+	int	c;
+
+	c = 123456;
 	printf("\n%d\n", ft_printf("Il y a %d cartes et %d %s", 32, 4, "rois"));
-	printf("\n%d\n", ft_printf("un petit test en hexa ? %X vaut 123456", 123456));
+	printf("\n%d\n", ft_printf("un petit test en hexa ? %X vaut 123456", c));
 	printf("\n%d\n", ft_printf("il y a 100%% de chance que ca fonctionne"));
+	printf("\n%d\n", ft_printf("l'adresse de c est : %p", c));
 	return (0);
 }
