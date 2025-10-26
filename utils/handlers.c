@@ -35,3 +35,26 @@ int	handle_str(va_list *args)
 {
 	return (print_putstr_fd(va_arg(*args, char *), 1));
 }
+
+int	handle_address(va_list *args)
+{
+	void			*c_addr;
+	unsigned long	addr_nb;
+	char			*res;
+	int				i;
+	size_t			len;	
+
+	i = 0;
+	c_addr = va_arg(*args, void *);
+	addr_nb = (unsigned long) &c_addr;
+	res = malloc(sizeof(char) * 17);
+	if (!res)
+		return (0);
+	res[i] = '0';
+	res[i + 1] = 'x';
+	i = 2;
+	convert_hexa(res, addr_nb, &i, 1);
+	len = print_putstr_fd(res, 1);
+	free(res);
+	return ((int)len);
+}

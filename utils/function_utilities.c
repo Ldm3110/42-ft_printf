@@ -36,7 +36,7 @@ int	print_putstr_fd(char *s, int fd)
 	return (index);
 }
 
-char	*convert_hexa(char *res, int nb, int *i, int hexa)
+char	*convert_hexa(char *res, unsigned long nb, int *i, int hexa)
 {
 	char	table[HEXA_TABLE];
 
