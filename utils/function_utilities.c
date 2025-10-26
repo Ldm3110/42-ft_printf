@@ -45,15 +45,9 @@ char	*convert_hexa(char *res, int nb, int *i, int hexa)
 	else if (hexa == 2)
 		ft_strlcpy(table, HEXA_UPP, sizeof(table));
 	if (nb >= 16)
-	{
 		convert_hexa(res, nb / 16, i, hexa);
-		convert_hexa(res, nb % 16, i, hexa);
-	}
-	else
-	{
-		res[*i] = table[nb % 16];
-		(*i)++;
-	}
+	res[*i] = table[nb % 16];
+	(*i)++;
 	res[*i] = '\0';
 	return (res);
 }
