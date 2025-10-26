@@ -29,6 +29,8 @@ $(LIBFT_NAME): $(LIBFT_OBJS)
 %.o: %.c
 	$(CC) $(CCFLAGS) -I . -I $(INCLUDES) -c $< -o $@
 
+cleanall: clean fclean
+
 clean:
 	@rm -f $(OBJS) $(LIBFT_OBJS)
 	@$(MAKE) -C $(LIBFT_DIR) clean
