@@ -38,8 +38,9 @@ int		handle_str(va_list *args);
 int		handle_hexa_lower(va_list *args);
 int		handle_hexa_upper(va_list *args);
 int		handle_address(va_list *args);
+int		handle_unsigned(va_list *args);
 int		print_putchar_fd(char c, int fd);
 int		print_putstr_fd(char *s, int fd);
-char	*convert_hexa(char *res, unsigned long nb, int *i, int hexa);
-
+void	convert_hexa(unsigned long nb, int hexa, int *len);
+void	ft_put_unsnbr(unsigned int nb, int *len);
 #endif
