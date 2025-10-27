@@ -29,6 +29,9 @@ typedef struct s_dict_func
 	t_handler_func	handler;
 }					t_dict_func;
 
+void	init_format_handler(t_dict_func *table);
+int		dispatch_function(char c, va_list *argument);
+int		ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
 int		handle_int(va_list *args);
 int		handle_char(va_list *args);
 int		handle_str(va_list *args);
