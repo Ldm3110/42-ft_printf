@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "../ft_printf.h"
 
 static int	handle_hexa(va_list *args, int hexa)
 {
@@ -23,7 +23,7 @@ static int	handle_hexa(va_list *args, int hexa)
 	res = malloc(sizeof(char) * 16);
 	if (!res)
 		return (0);
-	convert_hexa(res, (unsigned long) va_arg(*args, int), &i, hexa);
+	convert_hexa(res, (unsigned int) va_arg(*args, int), &i, hexa);
 	len = print_putstr_fd(res, 1);
 	free(res);
 	return ((int)len);

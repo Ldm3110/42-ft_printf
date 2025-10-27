@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-#include "../printf.h"
+#include "../ft_printf.h"
 #include "../libft/libft.h"
 
 int	handle_int(va_list *args)
@@ -33,20 +31,22 @@ int	handle_char(va_list *args)
 
 int	handle_str(va_list *args)
 {
+	if (!va_arg(*args, char *))
+		return (write(1, "(null)", 6));
 	return (print_putstr_fd(va_arg(*args, char *), 1));
 }
 
 int	handle_address(va_list *args)
 {
-	void			*c_addr;
 	unsigned long	addr_nb;
 	char			*res;
 	int				i;
 	size_t			len;	
 
 	i = 0;
-	c_addr = va_arg(*args, void *);
-	addr_nb = (unsigned long) &c_addr;
+	addr_nb = (unsigned long) va_arg(*args, void *);
+	if (!addr_nb)
+		return (write(1, "0x0", 3));
 	res = malloc(sizeof(char) * 17);
 	if (!res)
 		return (0);
