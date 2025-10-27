@@ -8,12 +8,12 @@ CCFLAGS = -Wall -Wextra -Werror
 # === PRINTF ====
 PRINTF_FILES = ft_printf.c utils/handlers.c utils/function_utilities.c
 OBJS = $(PRINTF_FILES:.c=.o)
-NAME = printf.a
+NAME = libftprintf.a
 
 # === LIBFT ===
 LIBFT_DIR = libft
 LIBFT_NAME = libft.a
-LIBFT_OBJS = $(LIBFT_FILES:.c=.o)
+#LIBFT_OBJS = $(LIBFT_FILES:.c=.o)
 
 # === INCLUDES ===
 INCLUDES = $(LIBFT_DIR)
@@ -23,8 +23,8 @@ all: $(NAME) ${LIBFT_NAME}
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-$(LIBFT_NAME): $(LIBFT_OBJS)
-	ar rcs $(LIBFT_NAME) $(LIBFT_OBJS)
+$(LIBFT_NAME): 
+	make -C $(LIBFT_DIR)
 
 %.o: %.c
 	$(CC) $(CCFLAGS) -I . -I $(INCLUDES) -c $< -o $@
