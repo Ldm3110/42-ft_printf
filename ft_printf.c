@@ -21,14 +21,15 @@ void	init_format_handler(t_dict_func *table)
 	table[4] = (t_dict_func){'x', handle_hexa_lower};
 	table[5] = (t_dict_func){'X', handle_hexa_upper};
 	table[6] = (t_dict_func){'p', handle_address};
-	table[7] = (t_dict_func){'\0', NULL};
+	table[7] = (t_dict_func){'u', handle_unsigned};
+	table[8] = (t_dict_func){'\0', NULL};
 }
 
 int	dispatch_function(char c, va_list *argument)
 {
 	int				len;
 	int				i;
-	t_dict_func		format_handler[7];
+	t_dict_func		format_handler[8];
 	t_handler_func	function;
 
 	init_format_handler(format_handler);
@@ -70,47 +71,7 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
+	//printf("len = %d\n", len_f);
 	return (len_f);
 }
 
-/*#include <stdio.h>
-int main(void)
-{
-    int a = 42;
-
-    //Pour %d
-    //printf("Le vrai -> %d\n", 2147483648);
-    //ft_printf("Le mien -> %d\n", 2147483648);
-    //printf("\n");
-    //Pour %i
-    printf("Le vrai -> %i\n", 42);
-    ft_printf("Le mien -> %i\n", 42);
-    printf("\n");
-    //Pour %s
-    //printf("Le vrai -> %s\n", NULL);
-    //ft_printf("Le mien -> %s\n", NULL);
-    //printf("\n");
-    //Pour %c
-    printf("Le vrai -> %c\n", 'c');
-    ft_printf("Le mien -> %c\n", 'c');
-    printf("\n");
-    //Pour %x
-    printf("Le vrai -> %x\n", -1);
-    ft_printf("Le mien -> %x\n", -1);
-    printf("\n");
-    //Pour %X
-    printf("Le vrai -> %X\n", -6);
-    ft_printf("Le mien -> %X\n", -6);
-    printf("\n");
-    //Pour %p
-    printf("Le vrai -> %p\n", (void*)&a);
-    ft_printf("Le mien -> %p\n", (void*)&a);
-    printf("\n");
-    //Pour %%
-    printf("Le vrai -> %%\n");
-    ft_printf("Le mien -> %%\n");
-    printf("\n");
-    //Pour verif le NULL
-    printf("Le vrai -> %d\n", printf(NULL));
-    ft_printf("Le mien -> %d\n", ft_printf(NULL));
-}*/
