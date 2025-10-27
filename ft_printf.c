@@ -10,17 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	init_format_handler(t_dict_func *table)
 {
 	table[0] = (t_dict_func){'c', handle_char};
 	table[1] = (t_dict_func){'d', handle_int};
-	table[2] = (t_dict_func){'s', handle_str};
-	table[3] = (t_dict_func){'x', handle_hexa_lower};
-	table[4] = (t_dict_func){'X', handle_hexa_upper};
-	table[5] = (t_dict_func){'p', handle_address};
-	table[6] = (t_dict_func){'\0', NULL};
+	table[2] = (t_dict_func){'i', handle_int};
+	table[3] = (t_dict_func){'s', handle_str};
+	table[4] = (t_dict_func){'x', handle_hexa_lower};
+	table[5] = (t_dict_func){'X', handle_hexa_upper};
+	table[6] = (t_dict_func){'p', handle_address};
+	table[7] = (t_dict_func){'\0', NULL};
 }
 
 int	dispatch_function(char c, va_list *argument)
@@ -52,6 +53,8 @@ int	ft_printf(const char *format, ...)
 
 	va_start(args, format);
 	len_f = 0;
+	if (!format)
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
@@ -70,15 +73,44 @@ int	ft_printf(const char *format, ...)
 	return (len_f);
 }
 
-#include <stdio.h>
-int	main(void)
+/*#include <stdio.h>
+int main(void)
 {
-	int	c;
+    int a = 42;
 
-	c = 123456;
-	printf("\n%d\n", ft_printf("Il y a %d cartes et %d %s", 32, 4, "rois"));
-	printf("\n%d\n", ft_printf("un petit test en hexa ? %X vaut 123456", c));
-	printf("\n%d\n", ft_printf("il y a 100%% de chance que ca fonctionne"));
-	printf("\n%d\n", ft_printf("l'adresse de c est : %p", c));
-	return (0);
-}
+    //Pour %d
+    //printf("Le vrai -> %d\n", 2147483648);
+    //ft_printf("Le mien -> %d\n", 2147483648);
+    //printf("\n");
+    //Pour %i
+    printf("Le vrai -> %i\n", 42);
+    ft_printf("Le mien -> %i\n", 42);
+    printf("\n");
+    //Pour %s
+    //printf("Le vrai -> %s\n", NULL);
+    //ft_printf("Le mien -> %s\n", NULL);
+    //printf("\n");
+    //Pour %c
+    printf("Le vrai -> %c\n", 'c');
+    ft_printf("Le mien -> %c\n", 'c');
+    printf("\n");
+    //Pour %x
+    printf("Le vrai -> %x\n", -1);
+    ft_printf("Le mien -> %x\n", -1);
+    printf("\n");
+    //Pour %X
+    printf("Le vrai -> %X\n", -6);
+    ft_printf("Le mien -> %X\n", -6);
+    printf("\n");
+    //Pour %p
+    printf("Le vrai -> %p\n", (void*)&a);
+    ft_printf("Le mien -> %p\n", (void*)&a);
+    printf("\n");
+    //Pour %%
+    printf("Le vrai -> %%\n");
+    ft_printf("Le mien -> %%\n");
+    printf("\n");
+    //Pour verif le NULL
+    printf("Le vrai -> %d\n", printf(NULL));
+    ft_printf("Le mien -> %d\n", ft_printf(NULL));
+}*/
