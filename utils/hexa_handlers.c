@@ -14,19 +14,13 @@
 
 static int	handle_hexa(va_list *args, int hexa)
 {
-	size_t	len;
-	char	*res;
-	int		i;
+	int	len;
+	int	i;
 
 	i = 0;
 	len = 0;
-	res = malloc(sizeof(char) * 16);
-	if (!res)
-		return (0);
-	convert_hexa(res, (unsigned int) va_arg(*args, int), &i, hexa);
-	len = print_putstr_fd(res, 1);
-	free(res);
-	return ((int)len);
+	convert_hexa((unsigned int) va_arg(*args, int), hexa, &len);
+	return (len);
 }
 
 int	handle_hexa_lower(va_list *args)

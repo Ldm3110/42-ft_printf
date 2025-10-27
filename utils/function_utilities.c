@@ -36,7 +36,18 @@ int	print_putstr_fd(char *s, int fd)
 	return (index);
 }
 
-char	*convert_hexa(char *res, unsigned long nb, int *i, int hexa)
+void	ft_put_unsnbr(unsigned int n, int *len)
+{
+	if (n >= 10)
+	{
+		ft_put_unsnbr(n / 10, len);
+		ft_put_unsnbr(n % 10, len);
+	}
+	else
+		*len += print_putchar_fd((n + '0'), 1);
+}
+
+void	convert_hexa(unsigned long nb, int hexa, int *len)
 {
 	char	table[HEXA_TABLE];
 
@@ -45,9 +56,6 @@ char	*convert_hexa(char *res, unsigned long nb, int *i, int hexa)
 	else if (hexa == 2)
 		ft_strlcpy(table, HEXA_UPP, sizeof(table));
 	if (nb >= 16)
-		convert_hexa(res, nb / 16, i, hexa);
-	res[*i] = table[nb % 16];
-	(*i)++;
-	res[*i] = '\0';
-	return (res);
+		convert_hexa(nb / 16, hexa, len);
+	*len += print_putchar_fd(table[nb % 16], 1);
 }
