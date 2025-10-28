@@ -71,7 +71,5 @@ int	ft_printf(const char *format, ...)
 		format++;
 	}
 	va_end(args);
-	//printf("len = %d\n", len_f);
 	return (len_f);
 }
-

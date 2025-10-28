@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lude-matt <marvin@42.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 10:29:01 by lude-matt         #+#    #+#             */
-/*   Updated: 2025/10/25 22:50:33 by jhervoch         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:27:26 by lude-matt        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
@@ -31,7 +31,7 @@ typedef struct s_dict_func
 
 void	init_format_handler(t_dict_func *table);
 int		dispatch_function(char c, va_list *argument);
-int		ft_printf(const char *format, ...) __attribute__((format(printf, 1, 2)));
+int		ft_printf(const char *format, ...)	__attribute__((format(printf, 1, 2)));
 int		handle_int(va_list *args);
 int		handle_char(va_list *args);
 int		handle_str(va_list *args);
@@ -43,4 +43,5 @@ int		print_putchar_fd(char c, int fd);
 int		print_putstr_fd(char *s, int fd);
 void	convert_hexa(unsigned long nb, int hexa, int *len);
 void	ft_put_unsnbr(unsigned int nb, int *len);
+
 #endif

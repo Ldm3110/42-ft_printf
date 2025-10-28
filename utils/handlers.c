@@ -35,7 +35,7 @@ int	handle_char(va_list *args)
 
 int	handle_str(va_list *args)
 {
-	char *str;
+	char	*str;
 
 	str = va_arg(*args, char *);
 	if (!str)
